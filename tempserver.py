@@ -1,9 +1,12 @@
-import struct
+"""Alexander Mörch"""
+
 import paho.mqtt.client as mqtt
 
+#Sätter topic och quality of service
 def on_connect(client, userdata, flags, rc):
     client.subscribe("yrgo/ela20/Dark/hello", qos=1)
 
+#Skriver ut meddelande på terminalen
 def on_message(client, userdata, msg):
     print(f"{float(msg.payload)}")
 
