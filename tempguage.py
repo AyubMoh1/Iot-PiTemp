@@ -1,3 +1,5 @@
+""Author Alexander Mörch""
+
 import os
 import glob
 import time
