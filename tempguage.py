@@ -1,4 +1,4 @@
-""Author Alexander Mörch""
+"""Author Alexander Mörch"""
 
 import os
 import glob
@@ -17,7 +17,7 @@ def read_temp_raw():
     with open(device_file, "r") as temp_read_file:
         return temp_read_file.readlines()
 
-#Omvandlar temperaturdatan till något mer läsbart
+#Omvandlar temperaturdatan till något läsbart
 def read_temp():
     lines = read_temp_raw()
     while lines[0].strip()[-3:] != 'YES':
