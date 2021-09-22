@@ -1,4 +1,3 @@
-  GNU nano 3.2                                                      dht.py                                                                
 import dht11
 import RPi.GPIO as GPIO
 import sys
