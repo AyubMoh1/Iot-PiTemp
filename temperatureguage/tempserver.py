@@ -4,14 +4,21 @@ import paho.mqtt.client as mqtt
 def on_connect(client, userdata, flags, rc):
     client.subscribe("sensors/temperature/channel1", qos=1)
 
+
 def on_message(client, userdata, msg):
     #print(f"{float(msg.payload)}")
     #var = msg.payload
     #var1 = var.decode("UTF-8") 
+    a,b,c,d = struct.unpack("QIBI", msg.payload)
+    #a1=f"{a:x}"
     
     with open("temperature.txt", "a") as file:
         #file.write(f"{var1}\n")   
-        file.write(f"{msg.payload}\n")
+        file.write(f"{a:x} {b:X} {c:x} {d:x}\n")
+
+
+
+
 
 client = mqtt.Client()
 client.on_connect = on_connect
