@@ -38,6 +38,7 @@ def read_temperature():
         return temp_c
 
 def sensor_package():
+    index = 1
     temperature = read_temperature()
     tid = get_datetime_string()
     return struct.pack('QIBI', S_ID, tid, index, temperature)
