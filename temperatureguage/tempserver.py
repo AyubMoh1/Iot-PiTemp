@@ -6,11 +6,12 @@ def on_connect(client, userdata, flags, rc):
 
 def on_message(client, userdata, msg):
     #print(f"{float(msg.payload)}")
-    var = msg.payload
-    var1 = var.decode("UTF-8") 
+    #var = msg.payload
+    #var1 = var.decode("UTF-8") 
+    
     with open("temperature.txt", "a") as file:
-        file.write(f"{var1}\n")   
-        #file.write(f"{float(msg.payload)}\n")
+        #file.write(f"{var1}\n")   
+        file.write(f"{msg.payload}\n")
 
 client = mqtt.Client()
 client.on_connect = on_connect
