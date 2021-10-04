@@ -1,6 +1,8 @@
 import struct
 import paho.mqtt.client as mqtt
 
+txtPath = "c:/Users/aom/Desktop/Iot-PiTemp-main/flask-example/vizualisr/temperature.txt"
+
 def on_connect(client, userdata, flags, rc):
     client.subscribe("sensors/temperature/channel1", qos=1)
 
@@ -12,9 +14,9 @@ def on_message(client, userdata, msg):
     a,b,c,d = struct.unpack("QIBI", msg.payload)
     #a1=f"{a:x}"
     
-    with open("temperature.txt", "a") as file:
+    with open(txtPath, "a") as file:
         #file.write(f"{var1}\n")   
-        file.write(f"{a:x} {b:X} {c:x} {d:x}\n")
+        file.write(f"{a:x} {b:x} {c:x} {d:x}\n")
 
 
 
