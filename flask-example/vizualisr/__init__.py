@@ -1,6 +1,10 @@
 from flask import Flask, render_template, flash
 import datetime
+import sys
+import os
+import csv
 
+txtPath = "c:/Users/aom/Desktop/Iot-PiTemp-main/flask-example/vizualisr/temperature.txt"
 # This creates the flask application and configures it
 # flask run will use this to start the application properly
 app = Flask(__name__)
@@ -8,18 +12,23 @@ app.config.from_mapping(
     # This is the session key. It should be a REALLY secret key!
     SECRET_KEY="553e6c83f0958878cbee4508f3b28683165bf75a3afe249e"
 )
-
 # The mapping of units in accordance with our specification
 UNITS = {
     0: "°C",
     1: "RH"
 }
 
+with open(txtPath, "r") as file:
+        #file.write(f"{var1}\n")   
+    for line in file:
+        print(line, end="")
+
+
 # This is a placeholder that returns a fixed set of meters
 # in a proper system this would look in a database or in
 # the file system for a list of meters in the system
 def get_meters():
-    meters = [ ("1234", 0),
+    meters = [ ("id_1", 0),
                ("1234", 1),
                ("1235", 0),
                ("1236", 0)]
