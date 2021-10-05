@@ -39,9 +39,12 @@ def read_temperature():
         return temp_c
 
 def sensor_package():
+    #unit = "C"
+    #unit = int(unit, 16)
     index = int(1)
     temperature = int(read_temperature(), 16)
     tid = get_datetime_string()
+    #return struct.pack('QIBII', S_ID, tid, index, temperature, unit)
     return struct.pack('QIBI', S_ID, tid, index, temperature)
     #A = format_frame(device_ID, tid ,temperature)
     #return bytearray(A, "UTF-8")
