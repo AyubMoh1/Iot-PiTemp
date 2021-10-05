@@ -3,6 +3,7 @@ import datetime
 import sys
 import os
 import csv
+#importera filen server.py ex. import Iot-PiTemp.temperatureguage.tempserver as server
 
 txtPath = "c:/Users/chartedge/Desktop/Iot-PiTemp-main/flask-example/vizualisr/temperature.txt"
 # This creates the flask application and configures it
@@ -77,16 +78,15 @@ def start_page():
 
 
 @app.route("/meter/<meter>/channel/<channel>")
-def show_measurements(meter, channel):
-    for i in range(3):
-        measurements = []
-        list_3 = read_and_split_string()
-        var3 = float(list_3[3])
-        var3 = var3 / 1000
-        var_2 = int(list_3[1], 16)
-        time = datetime.datetime.fromtimestamp(var_2)
-        measurements.append((time, var3, UNITS[0]))
+def show_measurements(meter, channel)
+    measurements = []
+    list_3 = read_and_split_string()
+    var3 = float(list_3[3])
+    var3 = var3 / 1000
+    var_2 = int(list_3[1], 16)
+    time = datetime.datetime.fromtimestamp(var_2)
+    measurements.append((time, var3, UNITS[0]))
     #measurements.append((list_3[1], list_3[3], UNITS[0]))
-        meter = list_3[0]
-        channel = list_3[2]
-        return render_template("meter.html", meter=meter, channel=channel, measurements=measurements)
+    meter = list_3[0]
+    channel = list_3[2]
+    return render_template("meter.html", meter=meter, channel=channel, measurements=measurements)
