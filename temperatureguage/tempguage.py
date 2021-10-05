@@ -15,6 +15,7 @@ device_folder = glob.glob(base_dir + '28*')[0]
 device_file = device_folder + '/w1_slave'
 device_ID = device_folder.replace(base_dir,'') #Hittar ID
 S_ID = device_ID.replace('-','') #Tar bort '-' från ID
+S_ID = int(S_ID, 16)
 
 #def get_sensor_ID():
 #    with open('/sys/bus/w1/devices/28-0000095c43dd/id',"r") as file:
@@ -38,8 +39,8 @@ def read_temperature():
         return temp_c
 
 def sensor_package():
-    index = 1
-    temperature = read_temperature()
+    index = int(1)
+    temperature = int(read_temperature(), 16)
     tid = get_datetime_string()
     return struct.pack('QIBI', S_ID, tid, index, temperature)
     #A = format_frame(device_ID, tid ,temperature)
@@ -60,9 +61,9 @@ def get_datetime_string():
 #var = '0x'+ device_ID
 #var = (var, 0)
 #num = (device_ID, 16)
-var = int(S_ID, 16)
-print(var)
-print(get_datetime_string())
-print(read_temperature())
+#var = int(S_ID, 16)
+#print(var)
+#print(get_datetime_string())
+#print(read_temperature())
 #print(device_ID)
 #print(num)
