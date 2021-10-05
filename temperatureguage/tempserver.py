@@ -12,10 +12,12 @@ def on_message(client, userdata, msg):
     #var = msg.payload
     #var1 = var.decode("UTF-8") 
     a,b,c,d = struct.unpack("QIBI", msg.payload)
+    #a,b,c,d,e = struct.unpack('QIBII', S_ID, tid, index, temperature, unit)
     #a1=f"{a:x}"
     
     with open(txtPath, "a") as file:
         #file.write(f"{var1}\n")   
+        #file.write(f"{a:x} {b:x} {c:x} {d:x} {e:x}\n")
         file.write(f"{a:x} {b:x} {c:x} {d:x}\n")
 
 
