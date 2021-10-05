@@ -71,7 +71,7 @@ def get_measurements(meter, channel):
 
 @app.route("/")
 def start_page():
-    meters = get_meters()
+    meters = mmeters()
     return render_template("start.html", meters=meters)
 
 # using @app.route with <something> makes "something" into
@@ -81,5 +81,11 @@ def start_page():
 
 @app.route("/meter/<meter>/channel/<channel>")
 def show_measurements(meter, channel):
-    measurements = get_measurements(meter, channel)
+    #measurements = get_measurements(meter, channel)
+    #```
+    list_3 = read_and_split_string()
+    measurements.append((list_3[1], list_3[3], UNITS[0]))
+    meter = list_[0]
+    channel = list_[2]
+    #```
     return render_template("meter.html", meter=meter, channel=channel, measurements=measurements)
