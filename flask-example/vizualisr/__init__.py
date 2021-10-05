@@ -18,6 +18,16 @@ UNITS = {
     1: "RH"
 }
 
+def read_and_split_string():
+    with open("temperature.txt","r") as file:
+        string = file.readline()
+        list = string.split()
+        return list
+    
+def test_ID(ID_string):
+    if ID_string not in list_of_sensors:
+        list_of_sensors.append(ID_string)
+
 with open(txtPath, "r") as file:
         #file.write(f"{var1}\n")   
     for line in file:
