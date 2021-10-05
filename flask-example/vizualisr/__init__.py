@@ -4,7 +4,7 @@ import sys
 import os
 import csv
 
-txtPath = "c:/Users/aom/Desktop/Iot-PiTemp-main/flask-example/vizualisr/temperature.txt"
+txtPath = "c:/Users/chartedge/Desktop/Iot-PiTemp-main/flask-example/vizualisr/temperature.txt"
 # This creates the flask application and configures it
 # flask run will use this to start the application properly
 app = Flask(__name__)
@@ -18,27 +18,22 @@ UNITS = {
     1: "RH"
 }
 
+
 def read_and_split_string():
-    with open("temperature.txt","r") as file:
-        string = file.readline()
-        list = string.split()
-        return list
-    
-def test_ID(ID_string):
-    if ID_string not in list_of_sensors:
-        list_of_sensors.append(ID_string)
+    with open(txtPath,"r") as file:
+        string_1 = file.readline()
+        list_1 = string_1.split()
+        return list_1
 
-with open(txtPath, "r") as file:
-        #file.write(f"{var1}\n")   
-    for line in file:
-        print(line, end="")
-
+print(read_and_split_string())
 
 # This is a placeholder that returns a fixed set of meters
 # in a proper system this would look in a database or in
 # the file system for a list of meters in the system
 def get_meters():
-    meters = [ ("id_1", 0),
+    
+   
+    meters = [ ("2123", 0),
                ("1234", 1),
                ("1235", 0),
                ("1236", 0)]
@@ -71,7 +66,7 @@ def get_measurements(meter, channel):
 
 @app.route("/")
 def start_page():
-    meters = mmeters()
+    meters = get_meters()
     return render_template("start.html", meters=meters)
 
 # using @app.route with <something> makes "something" into
@@ -79,16 +74,29 @@ def start_page():
 # the meter-argument would be set to (the string!) 1234
 # and channel to 5678.
 
+
+
 @app.route("/meter/<meter>/channel/<channel>")
+
+
+
 def show_measurements(meter, channel):
-    #measurements = get_measurements(meter, channel)
-    ```
-    list_3 = read_and_split_string()
-    var_2 = int(list_3[1], 16)
-    time = datetime.datetime.fromtimestamp(var_2)
-    measurements.append((time, list_3[3], UNITS[0]))
-    ```
-    meter = list_3[0]
-    channel = list_3[2]
-    #```
-    return render_template("meter.html", meter=meter, channel=channel, measurements=measurements)
+    for i in range(3):
+        measurements = []
+
+        list_3 = read_and_split_string()
+
+        var3 = float(list_3[3])
+
+        var3 = var3 / 1000
+    
+        var_2 = int(list_3[1], 16)
+    
+        time = datetime.datetime.fromtimestamp(var_2)
+        measurements.append((time, var3, UNITS[0]))
+    #measurements.append((list_3[1], list_3[3], UNITS[0]))
+        meter = list_3[0]
+        channel = list_3[2]
+    #
+
+        return render_template("meter.html", meter=meter, channel=channel, measurements=measurements)
