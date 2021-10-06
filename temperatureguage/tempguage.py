@@ -39,34 +39,13 @@ def read_temperature():
         return temp_c
 
 def sensor_package():
-    #unit = "C"
-    #unit = int(unit, 16)
+    unit = "C"
+    unit = int(unit, 16)
     index = int(1)
     temperature = int(read_temperature(), 16)
     tid = get_datetime_string()
-    #return struct.pack('QIBII', S_ID, tid, index, temperature, unit)
-    return struct.pack('QIBI', S_ID, tid, index, temperature)
-    #A = format_frame(device_ID, tid ,temperature)
-    #return bytearray(A, "UTF-8")
-
-#Tar in
-#def format_frame(A,B,C):
-   # return struct.pack('iii', A,B,C)
-    #return 'SensorID: ' + A + ' Time: '+ B + ' Temperature: ' + str(C) + ' C'
+    return struct.pack('QIBIB', S_ID, tid, index, temperature, unit)
 
 def get_datetime_string():
-    #dt = datetime.datetime.now()
-    #return dt.strftime("%d/%m/%Y %H:%M:%S")
-    dt = int(time.time())
-    return dt
-
-
-#var = '0x'+ device_ID
-#var = (var, 0)
-#num = (device_ID, 16)
-#var = int(S_ID, 16)
-#print(var)
-#print(get_datetime_string())
-#print(read_temperature())
-#print(device_ID)
-#print(num)
+    date_time = int(time.time())
+    return date_time
