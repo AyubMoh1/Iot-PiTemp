@@ -17,7 +17,7 @@ client.loop_start()
 while True:
 
     var = temp.sensor_package()
-
+    time.sleep(60)  #Skickar data en gång varje minut, enligt spec 
     msg1 = client.publish("sensors/temperature/channel1", payload=var, qos=1)
 
     #Väntar en sekund
