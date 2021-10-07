@@ -30,8 +30,7 @@ def read_temperature_raw():
 def read_temperature():
     lines = read_temperature_raw()
     while lines[0].strip()[-3:] != 'YES':
-        #time.sleep(0.2)
-        time.sleep(60)
+        time.sleep(0.2)
         lines = read_temp_raw()
     equals_pos = lines[1].find('t=')
     if equals_pos != -1:
@@ -43,7 +42,7 @@ def sensor_package():
     unit = "C"
     unit = int(unit, 16)
     index = int(1)
-    temperature = int(read_temperature(), 16)
+    temperature = int(read_temperature(), 16)   
     tid = get_datetime_string()
     return struct.pack('QIBIB', S_ID, tid, index, temperature, unit)
 
