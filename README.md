@@ -26,12 +26,25 @@ Project is created with :
 
 ## Setup
 
-To run this project you need to create a directory on your rpi called 'temperatureguage' and inside there you place 'tempguage.py', 'tempclient.py', 'Pipfile' and 'bootclient.sh'. The 'bootclient.sh' which is a script that starts pipenviroment and client is optional.
+To run this project you need to move 'temperatureguage' to the rpi this directory should contain 'tempguage.py', 'tempclient.py', 'Pipfile' and 'bootclient.sh'. The 'bootclient.sh' which is a script that starts pipenviroment and client is optional.
 
-'tempclient.py' line 14 must match the brokers IP(the machine that runs 'tempserver.py'.
+** 'tempclient.py' line 14 must match the brokers IP(the machine that runs 'tempserver.py'.  **
 
+to start the server:
+ $cd server
+ $pipenv install
+ $pipenv shell
+ $python tempserver.py
 
+to start the client:
+ $./bootclient.sh
+--------or------------
+ $pipenv install 
+ $pipenv shell
+ $python tempclient.py
 
-
- 
+to start flask:
+$pipenv install
+$ $Env:FLASK_APP="vizualisr"
+$ flask run
 
