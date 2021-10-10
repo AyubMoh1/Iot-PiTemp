@@ -31,20 +31,25 @@ To run this project you need to move 'temperatureguage' to the rpi this director
 ** 'tempclient.py' line 14 must match the brokers IP(the machine that runs 'tempserver.py'.  **
 
 to start the server:
+```
  $cd server
  $pipenv install
  $pipenv shell
  $python tempserver.py
-
+```
 to start the client:
+ ```
  $./bootclient.sh
+ ```
 --------or------------
+ ```
  $pipenv install 
  $pipenv shell
  $python tempclient.py
-
+```
 to start flask:
+```
 $pipenv install
 $ $Env:FLASK_APP="vizualisr"
 $ flask run
-
+```
