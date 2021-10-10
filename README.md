@@ -51,5 +51,6 @@ to start flask:
 ```
 $pipenv install
 $ $Env:FLASK_APP="vizualisr"
+$ pipenv shell
 $ flask run
 ```
