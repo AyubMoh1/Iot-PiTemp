@@ -10,7 +10,6 @@
 
 
 
-
 ## General info
 
 This project aim is to create a simple IoT device for sending and reciving temperature data over mqtt. 
@@ -22,6 +21,7 @@ Project is created with :
 *Headless Raspberry pi zero WH running Raspberry Pi OS Lite(32bit).
 *Ds18b20 temperature sensor.
 *Mqtt broker and server.
+*4,7kΩ resistor
 
 
 ## Setup
@@ -55,3 +55,7 @@ $ $Env:FLASK_APP="vizualisr"
 $ pipenv shell
 $ flask run
 ```
+
+circuit diagram
+
+![image](https://user-images.githubusercontent.com/89800658/136815718-bf1b7a85-c532-4a3b-a7b9-89e12cd1725a.png)
