@@ -1,13 +1,10 @@
 #!/bin/bash
+cd /home/pi/temperatureguage
 
 pipenv install
-
-
-wait
 
 
 pipenv run python tempclient.py
 
 
 echo "done!"
-
