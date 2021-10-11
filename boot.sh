@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ssh pi@192.168.1.33 /home/pi/temperatureguage/boot.sh
+ssh pi@192.168.1.11 /home/pi/temperatureguage/bootclient.sh &
 
 
 echo "done!"
