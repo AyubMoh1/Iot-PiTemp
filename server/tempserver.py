@@ -2,17 +2,18 @@ import struct
 import paho.mqtt.client as mqtt
 import datetime
 
-txtPath = "D:/Documents/Tempprojekt/flask-example/vizualisr/temperature.txt"
+#Denna filen tar in binärdata från en angiven topic och skriver in datan i en textfil
+
+txtPath = "D:/Documents/Tempprojekt/flask-example/vizualisr/temperature.txt" #Anger sökväg till texfilen temperature.txt.
+topic = "measurement/280000095c43dd" # Anger topic för MQTT.
 
 def on_connect(client, userdata, flags, rc):
-    client.subscribe("sensors/temperature/channel1", qos=1)
-    #client.subscribe("measurement/280000095c43dd", qos=1)
-
+    client.subscribe(topic, qos=1) #Sätter upp en subscription på angivet topic.
 
 def on_message(client, userdata, msg):
-    a, b, c, d, e = struct.unpack("QIBIB", msg.payload)
+    a, b, c, d, e = struct.unpack("QIBIB", msg.payload) #Packar upp binärdata i fem variabler 
     with open(txtPath, "a") as file:
-        file.write(f"{a:x} {b:X} {c:x} {d:x} {e:x}\n")
+        file.write(f"{a:x} {b:X} {c:x} {d:x} {e:x}\n") #Omvandlar alla värden till strängar och skriver ut dem i en textfil.
 
 
 client = mqtt.Client()
