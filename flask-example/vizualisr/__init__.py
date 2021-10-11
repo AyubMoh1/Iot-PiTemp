@@ -76,4 +76,72 @@ def start_page():
 #Funktionen presenterar datan i webbserverns visningssida
 def show_measurements(meter, channel):
     measurements = get_measurements(meter, channel)
-    return render_template("meter.html", meter=meter, channel=channel, measurements=measurements)    
+    return render_template("meter.html", meter=meter, channel=channel, measurements=measurements)  
+
+
+
+
+
+
+######################################################################################3
+
+from flask import Flask, render_template, flash
+import datetime
+import time
+
+txtPath = "C:/Users/chartedge/Desktop/Iot-PiTemp-main/flask-example/vizualisr/temperature.txt"
+
+#Sätt miljövariabel till: $Env:FLASK_APP="vizualisr"
+
+# This creates the flask application and configures it
+# flask run will use this to start the application properly
+app = Flask(__name__)
+app.config.from_mapping(
+    # This is the session key. It should be a REALLY secret key!
+    SECRET_KEY="553e6c83f0958878cbee4508f3b28683165bf75a3afe249e"
+)
+
+def get_data():
+    test = 0
+    data = []
+    with open(txtPath,"r") as file:
+        temperature_data = file.readlines()
+        for line in temperature_data:
+            id, i, t, d, u = split_data(line)
+            id = str(id)
+            d = float(d)
+            d = d/1000
+            t = int(t, 16)
+            t = datetime.datetime.fromtimestamp(t)
+            data.append((id, i, t, d, u))
+    return data
+
+def get_meters():
+    id, i, t, d, u = get_data()
+    return (id, i)
+
+def split_data(line):
+    line_list = line.split()
+    sensor_id = line_list[0]
+    time = line_list[1]
+    index = line_list[2]
+    data = line_list[3]
+    unit = line_list[4]
+    return (sensor_id, index, time, data, unit)
+
+def get_measurements(meter, channel):
+    measurements = get_data()
+    measurements = [ m for m in measurements if m[0] == meter and m[1] == channel ]
+    measurements = [id_and_index[2:] for id_and_index in measurements]
+    measurements.reverse()
+    return measurements
+
+@app.route("/")
+def start_page():
+    meters = get_meters()
+    return render_template("start.html", meters=meters)
+
+@app.route("/meter/<meter>/channel/<channel>")
+def show_measurements(meter, channel):
+    measurements = get_measurements(meter, channel)
+    return render_template("meter.html", meter=meter, channel=channel, measurements=measurements)   
