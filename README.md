@@ -36,6 +36,7 @@ to start using the boot script type ./boot.sh
 --------------or----------
 
 to start the server:
+from server folder
 ```
  $ cd server
  $ pipenv install
@@ -43,12 +44,14 @@ to start the server:
  $ python temperatureserver.py
 ```
 to start the client:
+ from temperatureguage folder
  ```
  $ pipenv install 
  $ pipenv shell
  $ python temperatureclient.py
  ```
 to start flask:
+ from flask-exempel folder
 ```
 $ pipenv install
 $ $Env:FLASK_APP="vizualisr"
