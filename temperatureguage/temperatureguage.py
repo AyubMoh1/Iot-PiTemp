@@ -37,7 +37,7 @@ def read_temperature():
 #Funktioner samlar ihop och formaterar data. Datan packas ihop och returneras sedan på binärform
 def sensor_package():
     unit = "C"
-    unit = int(unit, 16)
+    unit = int(unit, 16) 
     index = int(1)
     temperature = int(read_temperature(), 16)   
     time = get_datetime_string()
